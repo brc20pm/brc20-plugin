@@ -1,0 +1,297 @@
+[
+    {   
+        "kid":"Function",
+        "name": "md5",
+        "label": "md5",
+        "insertText": "md5()",
+        "detail":"md5-e",
+        "documentation":"Sum returns the MD5 checksum of the data."
+    },
+    {
+        "kid":"Function",
+        "name": "sha256e",
+        "label": "sha256e",
+        "insertText": "sha256e()",
+        "detail":"sha256-e",
+        "documentation":"Sum256 returns the SHA256 checksum of the data."
+    },
+    {
+        "kid":"Function",
+        "name": "keccak256",
+        "label": "keccak256",
+        "insertText": "keccak256()",
+        "detail":"keccak256",
+        "documentation":"Keccak256 calculates and returns the Keccak256 hash of the input data."
+    },
+    {
+        "kid":"Function",
+        "name": "base64e",
+        "label": "base64e",
+        "insertText": "base64e()",
+        "detail":"base64-e",
+        "documentation":"EncodeToString returns the base64 encoding of src."
+    },
+    {
+        "kid":"Function",
+        "name": "base64d",
+        "label": "base64d",
+        "insertText": "base64d()",
+        "detail":"base64-d",
+        "documentation":"DecodeString returns the bytes represented by the base64 string s."
+    },
+    {
+        "kid":"Function",
+        "name": "this.Caller",
+        "label": "this.Caller",
+        "insertText": "this.Caller(kid)",
+        "detail":"this.Caller(kid)",
+        "documentation":"Create an External Contract Instance."
+    },
+    {
+        "kid":"Property",
+        "name": "this.height",
+        "label": "this.height",
+        "insertText": "this.height",
+        "detail":"height",
+        "documentation":"Return to BTC block height of current transaction."
+    },
+    {
+        "kid":"Property",
+        "name": "this.memo",
+        "label": "this.memo",
+        "insertText": "this.memo",
+        "detail":"memo",
+        "documentation":"OP_RETURN"
+    },
+    {
+        "kid":"Property",
+        "name": "this.address",
+        "label": "this.address",
+        "insertText": "this.address",
+        "detail":"address",
+        "documentation":"Return to current contract address."
+    },
+    {
+        "kid":"Property",
+        "name": "this.txOrigin",
+        "label": "this.txOrigin",
+        "insertText": "this.txOrigin",
+        "detail":"txOrigin",
+        "documentation":"Return to the address where the current transaction was send."
+    },
+    {
+        "kid":"Property",
+        "name": "this.msgSender",
+        "label": "this.msgSender",
+        "insertText": "this.msgSender",
+        "detail":"msgSender",
+        "documentation":"Return to current caller address."
+    },
+    {
+        "kid":"Property",
+        "name": "this.timeStamp",
+        "label": "this.timeStamp",
+        "insertText": "this.timeStamp",
+        "detail":"timeStamp",
+        "documentation":"Returns the timestamp of the current transaction."
+    },
+    {
+        "kid":"Property",
+        "name": "this.txHash",
+        "label": "this.txHash",
+        "insertText": "this.txHash",
+        "detail":"txHash",
+        "documentation":"Returns the hash value of the current transaction."
+    },
+    {
+        "kid":"Function",
+        "name": "this.event",
+        "label": "this.event",
+        "insertText": "this.event({name:'EventName',arg1:'arg1',arg2:'arg2'})",
+        "detail":"event",
+        "documentation":"Log transaction events."
+    },
+    {
+        "kid":"Function",
+        "name": "this.randomInt",
+        "label": "this.randomInt",
+        "insertText": "this.randomInt(min,max)",
+        "detail":"randomInt",
+        "documentation":"Generates a random integer in the specified range."
+    },
+    {
+        "kid":"Function",
+        "name": "this.randomFloat",
+        "label": "this.randomFloat",
+        "insertText": "this.randomFloat(min,max)",
+        "detail":"randomFloat",
+        "documentation":"Generates a random float of the specified range."
+    },
+    {
+        "kid":"Function",
+        "name": "this.deploy",
+        "label": "this.deploy",
+        "insertText": "this.deploy(scriptHex)",
+        "detail":"deploy",
+        "documentation":"Deploy another contract using the current contract, note that only hex scripts are accepted and the deployed KID is returned."
+    },
+    {
+        "kid":"Function",
+        "name": "call",
+        "label": "call",
+        "insertText": "{$}.call('methodName',...args)",
+        "detail":"call",
+        "documentation":"Call external contract public methods."
+    },
+    {
+        "kid":"Snippet",
+        "name": "Contract",
+        "label": "Contract",
+        "insertText": "/*\nGenerate a simple contract template.\nNote: You should not have constructors\n*/\nclass Contract {\n\n \tinit(){\n\n \t} \n\n}",
+        "detail":"Contract",
+        "documentation":"Generate a simple contract template."
+    },
+    {
+        "kid":"Function",
+        "name": "require",
+        "label": "require",
+        "insertText": "require()",
+        "detail":"require",
+        "documentation":"Condition: Accepts two parameters [Condition][Error message not true]."
+    },
+    {
+        "kid":"Function",
+        "name": "private",
+        "label": "private",
+        "insertText": "_privateMethodDemo(){\n\n}",
+        "detail":"private",
+        "documentation":"private method demo"
+    },
+    {
+        "kid":"Property",
+        "name": "SafeMath",
+        "label": "SafeMath",
+        "insertText": "SafeMath",
+        "detail":"SafeMath",
+        "documentation":"add(a,b);sub(a,b);div(a,b);mul(a,b);mod(a,b),pow(a,b);"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.add",
+        "label": "SafeMath.add",
+        "insertText": "SafeMath.add(a,b)",
+        "detail":"add",
+        "documentation":"add"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.sub",
+        "label": "SafeMath.sub",
+        "insertText": "SafeMath.sub(a,b)",
+        "detail":"sub",
+        "documentation":"sub"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.div",
+        "label": "SafeMath.div",
+        "insertText": "SafeMath.div(a,b)",
+        "detail":"div",
+        "documentation":"div"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.mul",
+        "label": "SafeMath.mul",
+        "insertText": "SafeMath.mul(a,b)",
+        "detail":"mul",
+        "documentation":"mul"
+    }, {
+        "kid":"Function",
+        "name": "SafeMath.mod",
+        "label": "SafeMath.mod",
+        "insertText": "SafeMath.mod(a,b)",
+        "detail":"mod",
+        "documentation":"mod"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.pow",
+        "label": "SafeMath.pow",
+        "insertText": "SafeMath.pow(base,exponent)",
+        "detail":"pow",
+        "documentation":"pow"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.val",
+        "label": "SafeMath.val",
+        "insertText": "SafeMath.val(number)",
+        "detail":"val",
+        "documentation":"val"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.fixed",
+        "label": "SafeMath.fixed",
+        "insertText": "SafeMath.fixed(n,f)",
+        "detail":"fixed",
+        "documentation":"fixed"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.num",
+        "label": "SafeMath.num",
+        "insertText": "SafeMath.num(number)",
+        "detail":"num",
+        "documentation":"num"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.eq",
+        "label": "SafeMath.eq",
+        "insertText": "SafeMath.eq(a,b)",
+        "detail":"eq",
+        "documentation":"eq"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.neq",
+        "label": "SafeMath.neq",
+        "insertText": "SafeMath.neq(a,b)",
+        "detail":"neq",
+        "documentation":"neq"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.gt",
+        "label": "SafeMath.gt",
+        "insertText": "SafeMath.gt(a,b)",
+        "detail":"gt",
+        "documentation":"gt"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.lt",
+        "label": "SafeMath.lt",
+        "insertText": "SafeMath.lt(a,b)",
+        "detail":"lt",
+        "documentation":"lt"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.gte",
+        "label": "SafeMath.gte",
+        "insertText": "SafeMath.gte(a,b)",
+        "detail":"gte",
+        "documentation":"gte"
+    },
+    {
+        "kid":"Function",
+        "name": "SafeMath.lte",
+        "label": "SafeMath.lte",
+        "insertText": "SafeMath.lte(a,b)",
+        "detail":"lte",
+        "documentation":"lte"
+    }
+]

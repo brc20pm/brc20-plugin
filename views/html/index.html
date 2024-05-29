@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>OrdScript</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+	<title>Bootstrap Example</title>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://wow.techbrood.com/libs/jquery/jquery-1.11.1.min.js"></script>
+
+	<style>
+		.bg {
+			background: transparent;
+			padding: 0px;
+		}
+
+		.vm {
+			height: 29.5rem;
+		}
+
+		.border-0 {
+			border: 0px;
+		}
+
+		.border-top-bottom-1 {
+			border-top: 0.0625rem solid #313131;
+			border-bottom: 0.0625rem solid #313131;
+		}
+
+		.border-bottom-1 {
+			border-bottom: 0.0625rem solid #313131;
+		}
+
+		.border-radius-0 {
+			border-radius: 2px;
+		}
+
+		.padding-all {
+			padding: 1.0rem;
+		}
+
+		.font-size-all {
+			font-size: 0.9375rem;
+		}
+
+
+
+		.bg-all {
+			color: aliceblue;
+			background: transparent;
+		}
+
+		.logNum {
+			margin-left: 0.3125rem;
+		}
+
+		.text-title {
+			color: #888888;
+			padding-top: 0.5rem;
+			padding-bottom: 0.3125rem;
+		}
+
+		.margin-top-8 {
+			margin-top: 0.8rem;
+		}
+
+		.margin-top-10 {
+			margin-top: 1.0rem;
+		}
+
+
+		.btns button {
+			width: 6.25rem;
+			height: 2.375rem;
+			margin-right: 0.4rem;
+		}
+
+		.font-size-max {
+			font-size: 1.2rem;
+			color: aliceblue;
+			padding-top: 0px;
+		}
+
+		.modal-content {
+			background-color: rgba(24, 24, 24, 1);
+			border: 0px;
+		}
+
+		.modal-header {
+			border-bottom: 0.0925rem solid #313131;
+		}
+
+		.modal-footer {
+			border-top: 0.0925rem solid #313131;
+		}
+
+		.modal-body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+
+	<!-- 修改bootstap样式 -->
+	<style>
+		/* 按钮样式 */
+		.accordion-item {
+			border: 0px;
+		}
+
+		.accordion-item:last-of-type .accordion-button.collapsed {
+			border-radius: 2px;
+		}
+
+		.accordion-button:not(.collapsed) {
+			color: aliceblue;
+			background-color: transparent;
+			box-shadow: 0px 0px 0px 0px;
+		}
+
+		.accordion-button::after {
+			background-image: url('https://gitee.com/vendersen/icon/raw/main/select.svg');
+		}
+
+		.accordion-button:not(.collapsed)::after {
+			background-image: url('https://gitee.com/vendersen/icon/raw/main/selected.svg');
+		}
+
+		/* 下拉框样式 */
+		.form-select {
+			border: 0px;
+			height: 2.375rem;
+			border-radius: 2px;
+			box-shadow: none;
+			background-color: #2c2c2c;
+			color: aliceblue;
+			background-image: url('https://gitee.com/vendersen/icon/raw/main/selected.svg');
+			background-size: 1.25rem 1rem;
+		}
+
+		.form-select:focus {
+			border: 0px;
+			height: 2.375rem;
+			border-radius: 2px;
+			box-shadow: none;
+			background-color: #2c2c2c;
+			color: aliceblue;
+			background-image: url('https://gitee.com/vendersen/icon/raw/main/selected.svg');
+			background-size: 1.125rem 0.875rem;
+		}
+
+		/* 按钮样式 */
+		.btn-warning {
+			--bs-btn-color: #fff;
+			--bs-btn-bg: #dea806;
+			--bs-btn-border-color: #dea806;
+			--bs-btn-hover-color: #fff;
+			--bs-btn-hover-bg: #c49921;
+			--bs-btn-hover-border-color: #dba81b;
+			--bs-btn-focus-shadow-rgb: 217, 164, 6;
+			--bs-btn-active-color: #fff;
+			--bs-btn-active-bg: #af8a25;
+			--bs-btn-active-border-color: #dba81b;
+			--bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+			--bs-btn-disabled-color: #fff;
+			--bs-btn-disabled-bg: #dea806;
+			--bs-btn-disabled-border-color: #dea806;
+		}
+
+		.btn-primary {
+			--bs-btn-color: #fff;
+			--bs-btn-bg: #0c6aee;
+			--bs-btn-border-color: #0c6aee;
+			--bs-btn-hover-color: #fff;
+			--bs-btn-hover-bg: #0b5ed7;
+			--bs-btn-hover-border-color: #0a58ca;
+			--bs-btn-focus-shadow-rgb: 49, 132, 253;
+			--bs-btn-active-color: #fff;
+			--bs-btn-active-bg: #0a58ca;
+			--bs-btn-active-border-color: #0a53be;
+			--bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+			--bs-btn-disabled-color: #fff;
+			--bs-btn-disabled-bg: #0c6aee;
+			--bs-btn-disabled-border-color: #0c6aee;
+		}
+
+		.input-group input {
+			border: 0px;
+			border-radius: 2px;
+			background-color: #3c3c3c;
+			color: aliceblue;
+			box-shadow: none;
+		}
+
+		.input-group input:focus {
+			border: 0px;
+			border-radius: 2px;
+			background-color: #3c3c3c;
+			box-shadow: none;
+			color: aliceblue;
+		}
+
+
+		.input-group input::placeholder {
+			color: #878787;
+		}
+
+		.form-control:disabled {
+			background-color: #3c3c3c;
+			opacity: 1;
+		}
+
+		.input-group-text {
+			background-color: transparent;
+			border: 0.0625rem solid #313131;
+			border-radius: 2px;
+			color: aliceblue;
+		}
+
+		.list-group {
+			border-radius: 0px;
+		}
+
+		.tx-btn {
+			font-size: 0.91rem;
+			background-color: transparent;
+			color: aliceblue;
+			border: 0.0625rem solid #313131;
+			border-left: 0px;
+			border-right: 0px;
+			text-align: left;
+		}
+
+		.c-item {
+			width: 91%;
+			margin: 0 auto;
+			padding-left: 0rem;
+			padding-right: 0rem;
+			padding-top: 0.6rem;
+			padding-bottom: 0.6rem;
+			border-top: 0.0625rem solid #313131;
+		}
+
+		#cList {
+			width: 91%;
+			margin: 0 auto;
+		}
+
+		.param-btn {
+			border-radius: 0rem;
+			border-top-left-radius: 0.125rem;
+			border-bottom-left-radius: 0.125rem;
+		}
+
+		.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+			margin-left: 0;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+	</style>
+
+</head>
+
+<body class="bg">
+	<div class="vm ">
+		<div class="padding-all">
+			<div class="text-title font-size-max">Deploy & Transaction</div>
+			<!-- 执行环境 -->
+			<div class="text-title font-size-all">ENVIRONMENT</div>
+			<select id="vmSelect" class="form-select font-size-all">
+			</select>
+			<!-- 本地账户 -->
+			<div id="account">
+				<div class="text-title font-size-all">Account</div>
+				<select id="vmAccount" class="form-select font-size-all">
+				</select>
+			</div>
+			<!-- 交易费率 -->
+			<div class="text-title font-size-all">Miner Fee</div>
+			<div class="input-group mb-3">
+				<span class="input-group-text">1 Byte</span>
+				<input id="rate" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+				<span class="input-group-text">sats</span>
+			</div>
+			<!-- 其他 -->
+			<!-- <div id="transfer">
+				<div class="text-title font-size-all" style="padding-top: 0px;">Bitcoin transfer</div>
+				<div class="input-group mb-3">
+					<input id="outAddress" type="text" class="form-control" placeholder="Enter or paste wallet address">
+				</div>
+				<div class="input-group mb-3">
+					<input id="outValue" type="text" class="form-control" placeholder="Enter amount">
+					<span class="input-group-text">sats</span>
+				</div>
+			</div> -->
+			<!-- 可编译文件列表 -->
+			<div class="text-title font-size-all" style="padding-top: 0px;">CONTRACT</div>
+			<select id="fileSelect" class="form-select font-size-all">
+			</select>
+			<!-- 编译和部署 -->
+			<div class="btns margin-top-10">
+				<button id="compile-btn" type="button" class="btn btn-primary">Compile</button>
+				<button id="deploy-btn" disabled type="button" class="btn btn-warning">Deploy</button>
+			</div>
+
+			<!-- 从地址加载合约 -->
+			<div class="margin-top-8">
+				<div class="text-title font-size-all">Load contract from Address</div>
+				<div class="input-group mb-3 ">
+					<button id="at-btn" class="btn btn-primary param-btn" disabled type="button">At
+						Address</button>
+					<input id="at-input" type="text" class="form-control" placeholder="(Kid)"
+						aria-label="Example text with button addon">
+				</div>
+			</div>
+		</div>
+		<!-- 已记录的交易 -->
+		<div class="accordion accordion-flush txLogs bg-all border-top-bottom-1" id="accordionFlushExample"
+			style="width: 100%;">
+			<div class="accordion-item bg-all">
+				<span class="accordion-button collapsed  padding-all font-size-all bg-all " data-bs-toggle="collapse"
+					data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+					Transaction recorded
+					<span id="txSize" class="badge text-bg-dark rounded-pill logNum"> 0+ </span>
+				</span>
+				<div id="flush-collapseOne" class="accordion-collapse collapse bg-all"
+					aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+					<div id="txList" class="list-group">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 合约实例 -->
+		<div class="card border-radius-0 border-0 contract bg-all">
+			<div class="card-body padding-all font-size-all">
+				Deployed contracts
+			</div>
+			<div class="accordion accordion-flush txLogs bg-all border-bottom-1" id="contractFlush"
+				style="width: 100%;">
+			</div>
+		</div>
+	</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered ">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title bg-all" id="myModalLabel">
+						Please pay the gas fee
+					</h4>
+				</div>
+				<div id="modal-body" class="modal-body">
+
+				</div>
+				<div class="modal-footer">
+					<button id="pay-cancel" type="button" class="btn btn-default bg-all" data-dismiss="modal">Cancel
+					</button>
+					<button id="pay-ok" type="button" class="btn btn-primary">
+						Success
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+<!-- State -->
+<script>
+	var config = {
+		//运行环境列表
+		vmNets: [{
+			name: 'OrdScript Localnet',
+			nodenet: 'local',
+		}, {
+			name: 'OrdScript Mainnet',
+			nodenet: 'mainnet',
+		}, {
+			name: 'OrdScript Testnet',
+			nodenet: 'testnet',
+		}],
+		//选中的运行环境
+		runVM: {
+			name: 'OrdScript Localnet',
+			nodenet: 'local',
+		},
+		//本地账户
+		accounts: [
+			"2N7TYrDKNeZf4eVGXDVJyRKWaPdbx4qvCJj",
+			"tb1qsakyucsxkcdr2ay49v4pmp6qf2s4tssmlzdhhd",
+			"tb1q74mnz5yuxvrcq8zz37d5vv4kywrhe4j66t0z4p"
+		],
+		//已选中的账户
+		account: '2N7TYrDKNeZf4eVGXDVJyRKWaPdbx4qvCJj',
+		//每字节费率
+		rate: 0,
+		//所有费率
+		fees: {
+			fastestFee: 1,
+			halfHourFee: 1,
+			hourFee: 1,
+			economyFee: 1,
+			minimumFee: 1
+		},
+		//工作空间的文件列表
+		workFiles: [],
+		//要进行编译的文件
+		compile: null,
+		//交易记录
+		txList: [],
+		//合约记录
+		cList: [],
+		//支付Gas费用信息
+		payWith: null
+	}
+
+	//设置运行环境列表
+	function setVMnets() {
+		// 获取 select 元素
+		let vmSelect = $('#vmSelect');
+		//清空item
+		vmSelect.empty();
+		if (config.vmNets.length > 0) {
+			config.vmNets.forEach((item => {
+				vmSelect.append($('<option>', {
+					value: item.nodenet,
+					text: item.name
+				}));
+			}))
+		}
+	}
+
+	//设置运行环境
+	function setRunVM() {
+		let runVm = config.runVM;
+		if (runVm) {
+			$('#vmSelect').val(runVm.nodenet);
+
+			//如果是本地测试环境
+			if (runVm.nodenet === 'local') {
+				// 获取 select 元素
+				let vmAccount = $('#vmAccount');
+				//清空item
+				vmAccount.empty();
+				if (config.accounts.length > 0) {
+					config.accounts.forEach((item => {
+						let aText = item.substring(0, 15) + "..." + item.substring(item.length - 16, item.length)
+						vmAccount.append($('<option>', {
+							value: item,
+							text: aText
+						}));
+					}))
+					//恢复选中的文件
+					let account = config.account;
+					if (account) {
+						$('#vmAccount').val(account);
+						//设置账户
+						callVscode({
+							cmd: 'change-account',
+							data: account
+						})
+					}
+				}
+				$('#account').show()
+				$('#transfer').hide()
+			} else {
+				$('#account').hide()
+				$('#transfer').show()
+			}
+		}
+	}
+
+	//设置文件列表
+	function setWorkFileSelect() {
+		// 获取 select 元素
+		let fileSelect = $('#fileSelect');
+		//清空item
+		fileSelect.empty();
+		if (config.workFiles.length > 0) {
+			//添加一个选项头
+			fileSelect.append($('<option>', {
+				value: false,
+				text: 'No file selected',
+				disabled: true,
+				selected: true
+			}));
+			config.workFiles.forEach((item => {
+				fileSelect.append($('<option>', {
+					value: item.path,
+					text: item.name
+				}));
+			}))
+			//恢复选中的文件
+			let compile = config.compile;
+			if (compile) {
+				$('#fileSelect').val(compile.path);
+			}
+		} else {
+			//添加一个选项头
+			fileSelect.append($('<option>', {
+				value: false,
+				text: 'There are no compiled files yet',
+				disabled: true,
+				selected: true
+			}));
+		}
+	}
+
+
+	//设置最小费率
+	function setMinRate() {
+		let rate = config.rate;
+		if (!rate) {
+			let fees = config.fees;
+			if (fees) {
+				$('#rate').val(fees.minimumFee);
+			}
+		} else {
+			$('#rate').val(rate);
+		}
+	}
+
+	//设置交易数量
+	function setTxSize() {
+		let txList = config.txList;
+		if (txList) {
+			$('#txSize').text(txList.length + '+');
+		}
+	}
+
+	//设置交易记录
+	function setTxList() {
+		let txList = config.txList;
+		if (txList) {
+			$("#txList").empty()
+			txList.forEach(((item, key) => {
+				if (item) {
+					let hash = item.tx_hash
+					if (hash) {
+						let v = hash.substring(0, 15) + "..." + hash.substring(hash.length - 20, hash.length)
+						$("#txList").append(
+							`<button id="tx-` + key + `" type="button" class="tx-btn list-group-item">
+							` + v + `
+						</button>`);
+
+						$('#tx-' + key).click(function () {
+							callVscode({
+								cmd: 'log',
+								data: item
+							})
+						})
+					}
+				}
+			}))
+		}
+	}
+
+	//设置合约记录
+	function setcList() {
+		let cList = config.cList;
+		if (cList) {
+			$("#contractFlush").empty()
+
+			cList.forEach(((item, key) => {
+				let abi = JSON.parse(item.abi)
+				if (abi) {
+					let kid = item.kid
+
+					let eventList = []
+
+					let paramList = ""
+					abi.forEach((a, key) => {
+						let func = a.name
+						let view = func.startsWith("$")
+						let param = ''
+						// 处理按钮是只读还是写入
+						if (view) {
+							param = `
+								<div  class="input-group mb-3" >
+									<button  id="` + kid + `-btn-` + key + `" class="btn btn-warning param-btn"  type="button" >` + a.name + `</button>
+							`
+						} else {
+							param = `
+								<div  class="input-group mb-3" >
+									<button id="` + kid + `-btn-` + key + `" class="btn btn-primary param-btn"  type="button" >` + a.name + `</button>
+							`
+						}
+
+						//处理只读input和写入input
+						const params = a.params.filter(i => i !== '');
+						if (params.length > 0) {
+							param += `
+							<input id="` + kid + `-input-` + key + `" type="text" class="form-control" placeholder="` + params + `"
+									aria-label="Example text with button addon" aria-describedby="button-addon-` + key + `">
+							</div>`
+						} else {
+							param += `
+							<input type="text" class="form-control" disabled placeholder="not params"
+									aria-label="Example text with button addon" aria-describedby="button-addon-` + key + `">
+							</div>`
+						}
+
+						paramList += param;
+
+						eventList.push({
+							kid: kid,
+							method: func,
+							btn: kid + `-btn-` + key,
+							input: kid + `-input-` + key,
+							isView: view,
+							pLength: params.length
+						})
+					})
+
+					let k = kid.substring(0, 15) + "..." + kid.substring(kid.length - 16, kid.length)
+					$("#contractFlush").append(
+						`<div class="accordion-item bg-all">
+							<span class="accordion-button collapsed   font-size-all bg-all c-item" data-bs-toggle="collapse"
+								data-bs-target="#flush-contract` + key + `" aria-expanded="false" aria-controls="flush-contract` + key + `">` +
+						k +
+						`</span><div id="flush-contract` + key + `" class="accordion-collapse collapse bg-all"
+								aria-labelledby="flush-contract` + key + `" data-bs-parent="#contractFlush">
+								<div id="cList" class="list-group">
+									` + paramList + `</div></div></div>`);
+
+					//给方法按钮绑定事件
+					eventList.forEach(e => {
+						$('#' + e.btn).click(function () {
+							//获取输入的参数
+							let inputValue = $('#' + e.input).val();
+							let params = []
+							//如果需要参数
+							if (e.pLength > 0) {
+								if (!inputValue) {
+									callVscode({
+										cmd: 'show-error',
+										data: 'Please enter parameters (array form)'
+									})
+									return
+								}
+
+								try {
+									params = JSON.parse(inputValue)
+								} catch (e) {
+									callVscode({
+										cmd: 'show-error',
+										data: e + ''
+									})
+									return
+								}
+
+								if (!Array.isArray(params)) {
+									callVscode({
+										cmd: 'show-error',
+										data: 'non-array format'
+									})
+									return
+								}
+
+								if (params.length > e.pLength) {
+									callVscode({
+										cmd: 'show-error',
+										data: 'Requires'+  e.pLength +'parameters'
+									})
+									return
+								}
+
+							}
+
+							let rate = $('#rate').val();
+							if (!rate) {
+								callVscode({
+									cmd: 'show-error',
+									data: 'Please enter rate'
+								})
+								return
+							}
+
+
+							let outAddress = $('#outAddress').val();
+							let outValue = $('#outValue').val();
+
+							if (parseInt(outValue) > 0) {
+								if (!outAddress) {
+									callVscode({
+										cmd: 'show-error',
+										data: 'Please enter the receiving address'
+									})
+									return
+								}
+							} else {
+								if (outAddress) {
+									callVscode({
+										cmd: 'show-error',
+										data: 'Please enter the transfer amount'
+									})
+									return
+								}
+							}
+
+							//构建调用参数
+							let arg = {
+								kid: e.kid,
+								method: e.method,
+								isView: e.isView,
+								vm: config.runVM,
+								params: params,
+								rate: rate,
+								out: {
+									address: outAddress,
+									value: outValue
+								}
+							}
+							//发送给插件
+							callVscode({
+								cmd: 'exec',
+								data: arg
+							})
+						})
+					})
+
+				}
+
+			}))
+		}
+	}
+
+
+	//设置支付方式
+	function setPayWith() {
+		let payWith = config.payWith;
+		if (payWith) {
+			//清空模态窗
+			$("#modal-body").empty()
+			//清空完成事件
+			$("#pay-ok").off("click")
+			//清空取消事件
+			$("#pay-cancel").off("click")
+			//重置模态窗
+			$("#modal-body").append(`<img src="` + payWith.qrcode +
+				`" class="img-fluid" width="220px" height="220px" alt="Scan the QR code to pay gas fees">`);
+			//显示模态窗
+			showModal()
+
+			//重置支付完成
+			$("#pay-ok").click(function () {
+				config.payWith = null
+				setConfig()
+				// hiddenModal()
+				callVscode({
+					cmd: 'pay-ok',
+					data: payWith
+				})
+			})
+
+			//重置取消交易
+			$("#pay-cancel").click(function () {
+				config.payWith = null
+				callVscode({
+					cmd: 'log',
+					data: "transaction canceled"
+				})
+				setConfig()
+				hiddenModal()
+			})
+		}
+	}
+
+	//开启部署按钮
+	function enabledDeployBtn() {
+		$('#deploy-btn').prop('disabled', false);
+	}
+
+	//禁止部署按钮
+	function disableDeployBtn() {
+		$('#deploy-btn').prop('disabled', true);
+	}
+
+	//开启加载地址按钮
+	function enabledAtBtn() {
+		$('#at-btn').prop('disabled', false);
+	}
+
+	//禁止加载地址按钮
+	function disableAtBtn() {
+		$('#at-btn').prop('disabled', true);
+	}
+</script>
+
+<!-- VSCODE -->
+<script>
+	const vscode = acquireVsCodeApi();
+
+	// clearConfig()
+
+	function setConfig() {
+		vscode.setState(config);
+	}
+
+	function getConfig() {
+		let configState = vscode.getState();
+		if (configState) {
+			config = configState;
+		}
+	}
+
+	function clearConfig() {
+		vscode.setState(null);
+	}
+
+
+	//发送消息
+	function callVscode(data) {
+		if (typeof data === 'string') {
+			data = {
+				cmd: 'ordinary',
+				data: data
+			};
+		}
+		vscode.postMessage(data);
+	}
+
+	//监听插件消息
+	window.addEventListener('message', event => {
+		const message = event.data;
+		switchMessage(message)
+	});
+
+
+	//处理消息
+	function switchMessage(message) {
+		switch (message.cmd) {
+			case "get-work-file-result":
+				config.workFiles = message.data;
+				//保存状态
+				setConfig();
+				//设置文件列表
+				setWorkFileSelect();
+				break;
+			case "compile-result":
+				let cResult = message.data;
+				//如果编译通过
+				if (cResult) {
+					enabledDeployBtn();
+				}
+				break;
+			case "deploy-result":
+				let result = message.data;
+				config.txList.unshift(result.tx);
+				config.cList.unshift(result.cObjd);
+				//保存状态
+				setConfig();
+				//设置交易数量
+				setTxSize();
+				//设置交易记录
+				setTxList();
+				//设置合约记录
+				setcList();
+				break;
+			case "send-result":
+				let tx = message.data;
+				config.txList.unshift(tx);
+				//保存状态
+				setConfig();
+				//设置交易数量
+				setTxSize();
+				//设置交易记录
+				setTxList();
+				break;
+			case "get-contract-result":
+				let cObjg = message.data;
+				if (cObjg) {
+					config.cList.unshift(cObjg)
+					//保存状态
+					setConfig();
+					//设置合约记录
+					setcList();
+				}
+				break;
+			case "change-net-result":
+				//因为切换网络,所以需要清空刚刚所有的操作
+				let fees = message.data;
+				config.fees = fees;
+				config.txList = [];
+				config.cList = [];
+				config.compile = null;
+				config.payWith = null;
+				//保存状态
+				setConfig();
+				//重置一下
+				recovery()
+				break;
+			case "pay-with":
+				let payWith = message.data
+				config.payWith = payWith
+				setConfig()
+				setPayWith()
+				break;
+			case "hidden-modal":
+				hiddenModal()
+				break;
+		}
+	}
+</script>
+
+
+<script>
+	//恢复数据
+	function recovery() {
+		callVscode({
+			cmd: 'get-work-file'
+		})
+
+		//恢复状态
+		getConfig();
+		//恢复文件列表
+		setWorkFileSelect();
+		//恢复运行环境
+		setVMnets();
+		//恢复选中的环境
+		setRunVM();
+		//恢复费率
+		setMinRate();
+		//恢复交易数量
+		setTxSize();
+		//恢复交易记录
+		setTxList();
+		//恢复合约
+		setcList();
+		//恢复支付方式
+		setPayWith()
+
+
+		callVscode({
+			cmd: 'node-net',
+			data: config.runVM.nodenet
+		})
+	}
+
+
+	//Jq
+
+	$(document).ready(() => {
+		// 隐藏滑出内容
+		$("#content").css("bottom", "-50px"); // 将滑出内容向上移动50px以隐藏它
+
+		//恢复数据
+		recovery()
+
+		// 监听编译文件的选择事件
+		$('#fileSelect').change(function () {
+			//禁用部署
+			disableDeployBtn()
+			// 获取被选中的选项的值
+			let sFile = {
+				name: $(this).find('option:selected').text(),
+				path: $(this).val()
+			}
+			config.compile = sFile
+			setConfig()
+			//禁用
+			disableDeployBtn()
+		});
+		// 监听运行环境的选择事件
+		$('#vmSelect').change(function () {
+			// 获取被选中的选项的值
+			let vm = {
+				name: $(this).find('option:selected').text(),
+				nodenet: $(this).val()
+			}
+
+			config.runVM = vm
+			//因为切换了网络所以之前手动输入的费率失效
+			config.rate = 0;
+			setConfig()
+			//运行环境切换获取费率
+			callVscode({
+				cmd: 'change-net',
+				data: vm.nodenet
+			})
+		});
+
+		// 监听本地账户的选择事件
+		$('#vmAccount').change(function () {
+			// 获取被选中的选项的值
+			let account = $(this).val()
+			config.account = account
+			setConfig()
+			//设置账户
+			callVscode({
+				cmd: 'change-account',
+				data: account
+			})
+			callVscode({
+				cmd: 'log',
+				data: ['Test account', account]
+			})
+		});
+
+		//监听费率修改
+		$('#rate').on('input', function () {
+			let rate = $(this).val()
+			if (!rate) {
+				let fees = config.fees;
+				if (fees) {
+					rate = config.fees.minimumFee
+				} else {
+					rate = 1;
+				}
+			}
+			config.rate = rate
+
+			setConfig();
+			setMinRate();
+		});
+
+		//监听转账数量
+		$('#outValue').on('input', function () {
+			let value = $(this).val();
+			// 使用正则表达式检查输入是否为整数
+			const intRegex = /^\d+$/;
+			if (!intRegex.test(value)) {
+				// 如果输入不是整数，则重置输入框的值
+				$(this).val(value.slice(0, value.length - 1));
+			}
+		})
+
+
+		//监听加载地址输入
+		$('#at-input').on('input', function () {
+			let kid = $(this).val()
+			if (kid) {
+				enabledAtBtn()
+			} else {
+				disableAtBtn()
+			}
+		});
+
+		//监听加载地址按钮点击
+		$('#at-btn').click(function () {
+			let kid = $('#at-input').val()
+			let exs = false;
+			config.cList.forEach(item => {
+				if (item.kid == kid) {
+					exs = true;
+					return
+				}
+			})
+
+			$('#at-input').val('')
+
+			disableAtBtn()
+
+			if (exs) {
+				callVscode({
+					cmd: 'show-error',
+					data: 'Contract already exists'
+				})
+				return
+			}
+
+			callVscode({
+				cmd: 'get-contract',
+				data: kid
+			})
+		})
+
+
+		//监听编译按钮点击
+		$('#compile-btn').click(function () {
+			// showModal()
+			callVscode({
+				cmd: 'compile',
+				data: config.compile
+			})
+		})
+
+		//监听部署按钮点击
+		$('#deploy-btn').click(function () {
+			let rate = $('#rate').val();
+			if (!rate) {
+				callVscode({
+					cmd: 'show-error',
+					data: 'Please enter rate'
+				})
+				return
+			}
+
+			let outAddress = $('#outAddress').val();
+			let outValue = $('#outValue').val();
+
+			if (parseInt(outValue) > 0) {
+				if (!outAddress) {
+					callVscode({
+						cmd: 'show-error',
+						data: 'Please enter the receiving address'
+					})
+					return
+				}
+			} else {
+				if (outAddress) {
+					callVscode({
+						cmd: 'show-error',
+						data: 'Please enter the transfer amount'
+					})
+					return
+				}
+			}
+
+			callVscode({
+				cmd: 'deploy',
+				data: {
+					vm: config.runVM,
+					rate: rate,
+					out: {
+						address: outAddress,
+						value: outValue
+					}
+				}
+			})
+			//禁用
+			disableDeployBtn()
+		})
+
+	});
+
+	//显示支付
+	function showModal() {
+		$('#myModal').modal('show')
+	}
+
+	//关闭支付
+	function hiddenModal() {
+		$('#myModal').modal('hide')
+	}
+</script>
+
+
+</html>

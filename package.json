@@ -1,0 +1,76 @@
+{
+  "name": "ordscript",
+  "displayName": "ordScript-Plugin",
+  "description": "This plug provides by ordscript.com",
+  "version": "1.0.0",
+  "publisher": "OrdScript",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartup",
+    "onLanguage:javascript"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "OrdScript.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "languages": [
+      {
+        "id": "javascript",
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ordscript-idea",
+          "title": "ordScript.com",
+          "icon": "/views/img/logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "ordscript-idea": [
+        {
+          "id": "idea-webview",
+          "name": "",
+          "type": "webview"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@cmdcode/crypto-utils": "^2.4.6",
+    "@cmdcode/tapscript": "^1.4.4",
+    "axios": "^1.6.3",
+    "BigInt": "^5.5.3",
+    "qrcode": "^1.5.3",
+    "uglify-js": "^3.17.4",
+    "ws": "^8.16.0"
+  }
+}
