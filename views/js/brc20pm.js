@@ -118,7 +118,7 @@ function send(message) {
 
 
 module.exports = {
-    OrdScript: {
+    BRC20pm: {
         subscribe,
         unsubscribe,
         clearSubscriptions,

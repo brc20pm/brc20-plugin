@@ -15,15 +15,15 @@ const tapScript = util.dynamicRequire("@cmdcode/tapscript");
 
 
 const {
-	OrdScript
-} = require("./ordscript")
+	BRC20pm
+} = require("./brc20pm")
 
 const ec = new TextEncoder();
 
 const NodeMap = {
 	local: "http://127.0.0.1:8765/api",
-	testnet: "http://test-node.ordscript.com:8763/api",
-	mainnet: "http://main-node.ordscript.com:8761/api"
+	testnet: "http://test-node.BRC20pm.com:8763/api",
+	mainnet: "http://main-node.BRC20pm.com:8761/api"
 }
 
 
@@ -31,7 +31,7 @@ const NodeMap = {
 
 function getTargetAddr() {
 	let address;
-	switch (OrdScriptNode_Url) {
+	switch (BRC20pmNode_Url) {
 		case NodeMap.mainnet:
 			address = "3LAoUiU2X2cKRURL3hTHMufHM15Xrk2K9s"
 			break;
@@ -43,7 +43,7 @@ function getTargetAddr() {
 }
 
 
-let OrdScriptNode_Url = "http://127.0.0.1:8765/api"
+let BRC20pmNode_Url = "http://127.0.0.1:8765/api"
 
 
 
@@ -93,7 +93,7 @@ class WebViewProvider {
 		this.webviewView.webview.onDidReceiveMessage(( /** @type {any} */ message) => {
 			this.switchMessage(message);
 			//执行命令 
-			// vscode.commands.executeCommand("OrdScript.helloWorld")
+			// vscode.commands.executeCommand("BRC20pm.helloWorld")
 		}, null, context.subscriptions);
 
 
@@ -142,7 +142,7 @@ class WebViewProvider {
 				changenet_msg(message)
 				break;
 			case "node-net":
-				OrdScriptNode_Url = NodeMap[message.data]
+				BRC20pmNode_Url = NodeMap[message.data]
 				if (message.data != "local") {
 					subTransactions()
 				}
@@ -167,14 +167,14 @@ class WebViewProvider {
 
 async function subTransactions() {
 	//订阅该交易 
-	OrdScript.subscribe(OrdScriptNode_Url + "/subscribe", "block", async function (result, error) {
+	BRC20pm.subscribe(BRC20pmNode_Url + "/subscribe", "block", async function (result, error) {
 		if (error) {
 			util.log("error:", error.toString())
 			return
 		}
 		result.transactions.forEach(async txid => {
 			if (subTxMap[txid]) {
-				let response = await get(OrdScriptNode_Url + "/tx/" + txid)
+				let response = await get(BRC20pmNode_Url + "/tx/" + txid)
 				if (response) {
 					let result = response.data.data
 					if (result) {
@@ -352,10 +352,10 @@ async function changenet_msg(message) {
 		// util.log(message)
 		let nodenet = message.data;
 
-		OrdScriptNode_Url = NodeMap[nodenet]
+		BRC20pmNode_Url = NodeMap[nodenet]
 
 		//因为切换网络,所以需要取消所有
-		OrdScript.clearSubscriptions()
+		BRC20pm.clearSubscriptions()
 
 		let frees = await getFeeRate(nodenet)
 		callWebView({
@@ -410,7 +410,7 @@ async function deploy(callData) {
  * @param {{ sender: string; operation: string; source: string; }} data
  */
 async function delpoyLocal(data) {
-	let response = await post(OrdScriptNode_Url + "/indexer", data);
+	let response = await post(BRC20pmNode_Url + "/indexer", data);
 	if (response) {
 		let result = response.data
 		if (result.code === 200) {
@@ -430,7 +430,7 @@ async function getTx(hash, subObj = null) {
 		//添加交易Hash到订阅列表
 		subTxMap[subObj.hash] = subObj.op //订阅该交易
 	} else {
-		let response = await get(OrdScriptNode_Url + "/tx/" + hash)
+		let response = await get(BRC20pmNode_Url + "/tx/" + hash)
 		if (response) {
 			let result = response.data.data
 			if (result) {
@@ -452,7 +452,7 @@ async function getTx(hash, subObj = null) {
  * @param {string} kid
  */
 async function getContract(kid) {
-	let response = await get(OrdScriptNode_Url + "/script/" + kid)
+	let response = await get(BRC20pmNode_Url + "/script/" + kid)
 	if (response) {
 		let result = response.data
 		if (result.code === 200) {
@@ -521,7 +521,7 @@ function send(callData) {
  * @param {{ sender: string; operation: string; source: string; }} data
  */
 async function sendLocal(data) {
-	let response = await post(OrdScriptNode_Url + "/indexer", data);
+	let response = await post(BRC20pmNode_Url + "/indexer", data);
 	if (response) {
 		let result = response.data
 		if (result.code === 200) {
@@ -567,7 +567,7 @@ async function call(callData) {
 		source: hex
 	}
 
-	let response = await post(OrdScriptNode_Url + "/call", data);
+	let response = await post(BRC20pmNode_Url + "/call", data);
 	if (response) {
 		let result = response.data
 		if (result.code == 200) {
@@ -867,7 +867,7 @@ async function gen_txdata(relayer) {
  * @param {string} txHex
  */
 async function broadcast_tx(txHex) {
-	let response = await await get(OrdScriptNode_Url + "/broadcast/" + txHex)
+	let response = await await get(BRC20pmNode_Url + "/broadcast/" + txHex)
 	if (response) {
 		let result = response.data
 		if (result.code == 200) {
@@ -1014,7 +1014,7 @@ async function genPayWith(address, amount, network) {
 	let tag = "bitcoin:"
 	tag += address
 	tag += "?amount=" + amount
-	tag += "&label=ordscript"
+	tag += "&label=BRC20pm"
 
 	switch (network) {
 		case "testnet":

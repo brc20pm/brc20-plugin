@@ -4,7 +4,7 @@ const path = require('path');
 const vscode = require('vscode');
 const exec = require('child_process').exec;
 
-const outputChannel = vscode.window.createOutputChannel('OrdScript');
+const outputChannel = vscode.window.createOutputChannel('BRC20pm');
 
 const util = {
     /**
@@ -117,7 +117,7 @@ const util = {
         }
         // vscode.window.activeTerminal.sendText(args.toString(),true);
         let context = JSON.stringify(args, null, 2)
-        outputChannel.appendLine("\nOrdScript Out:\n")
+        outputChannel.appendLine("\nBRC20pm Out:\n")
         outputChannel.appendLine(context)
         outputChannel.show()
     },

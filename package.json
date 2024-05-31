@@ -1,9 +1,9 @@
 {
-  "name": "ordscript",
-  "displayName": "ordScript-Plugin",
-  "description": "This plug provides by ordscript.com",
+  "name": "brc20pm",
+  "displayName": "brc20pm-Plugin",
+  "description": "This plug provides by brc20pm.com",
   "version": "1.0.0",
-  "publisher": "OrdScript",
+  "publisher": "BRC20pm",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -18,7 +18,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "OrdScript.helloWorld",
+        "command": "brc20pm.helloWorld",
         "title": "Hello World"
       }
     ],
@@ -34,14 +34,14 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "ordscript-idea",
-          "title": "ordScript.com",
+          "id": "brc20pm-idea",
+          "title": "brc20pm.com",
           "icon": "/views/img/logo.svg"
         }
       ]
     },
     "views": {
-      "ordscript-idea": [
+      "brc20pm-idea": [
         {
           "id": "idea-webview",
           "name": "",

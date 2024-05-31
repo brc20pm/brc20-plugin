@@ -1,1 +1,1 @@
-# OrdScript Plugin
+# BRC20pm Plugin
