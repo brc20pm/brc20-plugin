@@ -22,8 +22,8 @@ const ec = new TextEncoder();
 
 const NodeMap = {
 	local: "http://127.0.0.1:8765/api",
-	testnet: "http://test-node.BRC20pm.com:8763/api",
-	mainnet: "http://main-node.BRC20pm.com:8761/api"
+	testnet: "http://test-node.brc20pm.com:8763/api",
+	mainnet: "http://main-node.brc20pm.com:8761/api"
 }
 
 
