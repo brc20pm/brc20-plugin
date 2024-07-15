@@ -707,7 +707,7 @@ function gen_relayer(relay) {
 	const mimetype = ec.encode('text/plain;charset=utf-8')
 
 	const brc20JSON = {
-		"p": "brc-20",
+		"p": "brc20-pm",
 		"op": relay.op,
 		"src": textToHex(relay.source)
 	}
