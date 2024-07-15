@@ -2,7 +2,7 @@
   "name": "brc20pm",
   "displayName": "brc20pm-Plugin",
   "description": "This plug provides by brc20pm.com",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "BRC20pm",
   "engines": {
     "vscode": "^1.85.0"
