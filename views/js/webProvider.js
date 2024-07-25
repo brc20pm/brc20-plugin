@@ -27,7 +27,18 @@ const NodeMap = {
 }
 
 
-
+function getMemPool(){
+	let domain;
+	switch (BRC20pmNode_Url) {
+		case NodeMap.mainnet:
+			domain = "https://mempool.space"
+			break;
+		case NodeMap.testnet:
+			domain = "https://mempool.space/testnet"
+			break;
+	}
+	return domain;
+}
 
 function getTargetAddr() {
 	let address;
@@ -623,7 +634,7 @@ async function getFeeRate(nodenet) {
  */
 async function getLastVout(address) {
 	let lastVoutTx = null
-	let url = "https://mempool.space/testnet/api/address/" + address + "/txs"
+	let url = getMemPool()+"/api/address/" + address + "/txs"
 	util.log(url)
 	let response = await get(url);
 	if (response) {
@@ -802,6 +813,8 @@ async function gen_txdata(relayer) {
 	const pubkey = cUtils.keys.get_pubkey(seckey, true)
 	const script = tapScript.Script.decode(relayer.script)
 
+	
+
 	let vout = [{
 		// We are leaving behind 1000 sats as a fee to the miners.
 		value: relayer.voutTx.amount - relayer.fee,
@@ -867,7 +880,7 @@ async function gen_txdata(relayer) {
  * @param {string} txHex
  */
 async function broadcast_tx(txHex) {
-	let response = await await get(BRC20pmNode_Url + "/broadcast/" + txHex)
+	let response = await get(BRC20pmNode_Url + "/broadcast/" + txHex)
 	if (response) {
 		let result = response.data
 		if (result.code == 200) {
