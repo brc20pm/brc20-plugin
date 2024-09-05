@@ -22,7 +22,7 @@ const ec = new TextEncoder();
 
 const NodeMap = {
 	local: "http://127.0.0.1:8765/api",
-	testnet: "http://test-node.brc20pm.com:8763/api",
+	testnet: "http://127.0.0.1:8763/api",
 	mainnet: "http://main-node.brc20pm.com:8761/api"
 }
 
@@ -342,10 +342,6 @@ async function payOk_msg(message) {
  */
 async function getContract_msg(message) {
 	let kid = message.data;
-	if (!kid.startsWith("ord")) {
-		util.showError("invalid address")
-		return
-	}
 	let cObjg = await getContract(kid);
 	callWebView({
 		cmd: 'get-contract-result',
@@ -479,9 +475,6 @@ async function getContract(kid) {
 
 
 //写入合约
-/**
- * @param {{ [x: string]: any; vm: any; rate: any; }} callData
- */
 function send(callData) {
 	let rVm = callData.vm;
 	let rate = callData.rate;
@@ -510,27 +503,22 @@ function send(callData) {
 
 
 	//本地测试环境
-	let arg = JSON.stringify(callData);
-
 	switch (rVm.nodenet) {
 		case "local":
-			let data = {
+			return sendLocal({
 				sender: account,
 				operation: "send",
-				source: str2Hex(arg)
-			}
-			return sendLocal(data);
+				data: callData
+			});
 		default:
 			//测试网或正式网
-			buildTx("send", arg, rVm, rate, out)
+			buildTx("send", callData, rVm, rate, out)
 			break;
 	}
 }
 
 
-/**
- * @param {{ sender: string; operation: string; source: string; }} data
- */
+
 async function sendLocal(data) {
 	let response = await post(BRC20pmNode_Url + "/indexer", data);
 	if (response) {
@@ -569,13 +557,10 @@ async function call(callData) {
 	}
 
 
-	let arg = JSON.stringify(callData);
-	//再转为16进制字符串
-	let hex = str2Hex(arg)
 	//构建数据
 	let data = {
 		sender: account,
-		source: hex
+		data: callData
 	}
 
 	let response = await post(BRC20pmNode_Url + "/call", data);
@@ -667,7 +652,7 @@ async function getLastVout(address) {
 
 //构建交易(操作标识符,wit数据,网络信息)
 
-async function buildTx(op, source, vm, rate, out) {
+async function buildTx(op, data, vm, rate, out) {
 	// // Create a keypair to use for testing.
 	const secret = cUtils.util.random(32).hex;
 	const seckey = cUtils.keys.get_seckey(secret)
@@ -676,7 +661,7 @@ async function buildTx(op, source, vm, rate, out) {
 	let relay = {
 		pubkey,
 		op,
-		source,
+		data,
 		vm,
 		rate
 	}
@@ -718,14 +703,19 @@ function gen_relayer(relay) {
 	const mimetype = ec.encode('text/plain;charset=utf-8')
 
 	const brc20JSON = {
-		"p": "brc20-pm",
+		"p": "brc-20",
 		"op": relay.op,
-		"src": textToHex(relay.source)
 	}
 	
+	if(relay.op == 'deploy'){
+		brc20JSON['src'] = textToHex(relay.data)
+	}else{
+		brc20JSON['src'] = relay.data
+	}
 
+	const data = JSON.stringify(brc20JSON)
 	// Basic format of an 'inscription' script.
-	const script = [relay.pubkey, 'OP_CHECKSIG', 'OP_0', 'OP_IF', marker, '01', mimetype, 'OP_0', ec.encode(JSON.stringify(brc20JSON)),
+	const script = [relay.pubkey, 'OP_CHECKSIG', 'OP_0', 'OP_IF', marker, '01', mimetype, 'OP_0', ec.encode(data),
 		'OP_ENDIF'
 	]
 	// For tapscript spends, we need to convert this script into a 'tapleaf'.
@@ -754,7 +744,7 @@ function gen_relayer(relay) {
 		vout.value = parseInt('0');
 	}
 
-	const txsize = 200 + (relay.source.length / 2);
+	const txsize = 200 + (data.length / 2);
 	const fee = Math.round(relay.rate * txsize) + (vout.value + 1);
 
 	//返回信息
